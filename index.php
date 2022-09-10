@@ -38,7 +38,7 @@
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span><?= $post_date ?></p>
                 <hr>
-                <img class="img-responsive" src="https://loremflickr.com/640/360" alt="img">
+                <img class="img-responsive" src="images/<?= $post_image ?>" alt="img">
                 <hr>
                 <p><?= $post_content ?></p>
                 <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
