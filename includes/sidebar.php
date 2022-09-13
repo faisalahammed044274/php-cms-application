@@ -22,7 +22,7 @@
     <div class="well">
 
         <?php
-        $query = "SELECT * FROM categories LIMIT 3";
+        $query = "SELECT * FROM categories";
         $select_categories_sidebar = mysqli_query($connection, $query);
         ?>
 
@@ -61,6 +61,6 @@
     </div>
 
     <!-- Side Widget Well -->
-                    <?php include "widget.php" ?>
+    <?php include "widget.php" ?>
 
 </div>

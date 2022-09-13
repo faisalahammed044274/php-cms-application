@@ -1,5 +1,4 @@
 <?php include "includes/admin_header.php" ?>
-
 <div id="wrapper">
 
     <!-- Navigation -->
@@ -36,7 +35,7 @@
                             $create_category_query = mysqli_query($connection, $query);
 
                             if (!$create_category_query) {
-                                die('Query Failed' . mysqli_error($connection));
+                                die('Query Failed');
                             }
                         }
 
@@ -66,7 +65,7 @@
                         ?>
                         <table class="table table-bordered table-hover text-center" style="color:grey">
                             <thead>
-                                <tr>
+                                <tr style="text-align: center;">
                                     <th>Id</th>
                                     <th>Category Title</th>
                                 </tr>
@@ -80,9 +79,19 @@
                                     echo "<tr>";
                                     echo "<td><b>$cat_id</b></td>";
                                     echo "<td><b>$cat_title</b></td>";
+                                    echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
                                     echo "</tr>";
                                 }
+                                ?>
+                                <?php
 
+                                if (isset($_GET['delete'])) {
+                                    $the_cat_id = $_GET['delete'];
+
+                                    $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id}";
+                                    $delete_query = mysqli_query($connection, $query);
+                                    header("Location : /admin/categories.php");
+                                }
                                 ?>
                             </tbody>
                         </table>

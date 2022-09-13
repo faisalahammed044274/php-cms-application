@@ -56,7 +56,7 @@
                 </ul>
             </li>
             <li class="">
-                <a href="/admin"><i class="fa fa-fw fa-newspaper-o"></i> Categories</a>
+                <a href="/admin/categories.php"><i class="fa fa-fw fa-newspaper-o"></i> Categories</a>
             </li>
             <li>
                 <a href="/admin"><i class="fa fa-fw fa-comment"></i> Comments</a>
