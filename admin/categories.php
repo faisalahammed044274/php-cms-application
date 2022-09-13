@@ -35,14 +35,18 @@
                     </div>
                     <!-- / Add Category Form -->
                     <div class="col-xs-6">
-                        <table class="table table-bordered table-hover" style="color:grey">
+                        <table class="table table-bordered table-hover text-center" style="color:grey">
                             <thead>
-                                <tr>
+                                <tr >
                                     <th>Id</th>
                                     <th>Category Title</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>Laravel Id</td>
+                                    <td>Laravel Category</td>
+                                </tr>
                                 <tr>
                                     <td>Laravel Id</td>
                                     <td>Laravel Category</td>
