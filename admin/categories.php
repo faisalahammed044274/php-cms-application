@@ -1,9 +1,9 @@
-<?php include "includes/header.php" ?>
+<?php include "includes/admin_header.php" ?>
 
 <div id="wrapper">
 
     <!-- Navigation -->
-    <?php include "includes/navigation.php" ?>
+    <?php include "includes/admin_navigation.php" ?>
 
     <div id="page-wrapper">
 
@@ -20,14 +20,36 @@
 
                     <!--Add Category Form -->
                     <div class="col-xs-6">
-                        <form action="">
+
+                        <?php
+
+                        if (isset($_POST['submit'])) {
+                            $cat_title = $_POST['cat_title'];
+                        }
+
+                        if ($cat_title == '' || empty($cat_title)) {
+                            echo "This field should not be empty";
+                        } else {
+                            $query = "INSERT INTO categories(cat_title)";
+                            $query .= "VALUE('{$cat_title}')";
+
+                            $create_category_query = mysqli_query($connection, $query);
+
+                            if (!$create_category_query) {
+                                die('Query Failed' . mysqli_error($connection));
+                            }
+                        }
+
+                        ?>
+
+
+                        <form action="" method="post">
                             <div clas="form-group">
                                 <label for="cat_title">
                                     <h3>Add Category</h3>
                                 </label>
-                                <input class="form-control" type="text" name="cat_title">
+                                <input class="form-control " style="margin-bottom:12px; " type="text" name="cat_title">
                             </div>
-                            <br>
                             <div class="form-group">
                                 <input class="btn btn-primary" type="submit" name="submit" value="Add Category">
                             </div>
@@ -35,34 +57,33 @@
                     </div>
                     <!-- / Add Category Form -->
                     <div class="col-xs-6">
+
+                        <?php
+
+                        $query = "SELECT * FROM categories";
+                        $select_categories = mysqli_query($connection, $query);
+
+                        ?>
                         <table class="table table-bordered table-hover text-center" style="color:grey">
                             <thead>
-                                <tr >
+                                <tr>
                                     <th>Id</th>
                                     <th>Category Title</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Laravel Id</td>
-                                    <td>Laravel Category</td>
-                                </tr>
-                                <tr>
-                                    <td>Laravel Id</td>
-                                    <td>Laravel Category</td>
-                                </tr>
-                                <tr>
-                                    <td>Laravel Id</td>
-                                    <td>Laravel Category</td>
-                                </tr>
-                                <tr>
-                                    <td>Laravel Id</td>
-                                    <td>Laravel Category</td>
-                                </tr>
-                                <tr>
-                                    <td>Laravel Id</td>
-                                    <td>Laravel Category</td>
-                                </tr>
+                                <?php
+
+                                while ($row = mysqli_fetch_assoc($select_categories)) {
+                                    $cat_id = $row['cat_id'];
+                                    $cat_title = $row['cat_title'];
+                                    echo "<tr>";
+                                    echo "<td><b>$cat_id</b></td>";
+                                    echo "<td><b>$cat_title</b></td>";
+                                    echo "</tr>";
+                                }
+
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -77,3 +98,5 @@
     <!-- /#page-wrapper -->
 
 </div>
+
+<?php include "includes/admin_footer.php" ?>

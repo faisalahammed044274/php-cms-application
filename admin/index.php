@@ -1,9 +1,9 @@
-<?php include "includes/header.php" ?>
+<?php include "includes/admin_header.php" ?>
 
 <div id="wrapper">
 
     <!-- Navigation -->
-    <?php include "includes/navigation.php" ?>
+    <?php include "includes/admin_navigation.php" ?>
 
     <div id="page-wrapper">
 
@@ -14,7 +14,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">
                         Welcome Admin
-                        <small>Start your work and enjoy !</small>
+                        <small>Author</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li>
@@ -37,4 +37,4 @@
 </div>
 <!-- /#wrapper -->
 
-<?php include "includes/footer.php" ?>
+<?php include "includes/admin_footer.php" ?>
