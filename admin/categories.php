@@ -1,8 +1,8 @@
-<?php include "includes/admin_header.php" ?>
+<?php include "includes/admin_header.php"?>
 <div id="wrapper">
 
     <!-- Navigation -->
-    <?php include "includes/admin_navigation.php" ?>
+    <?php include "includes/admin_navigation.php"?>
 
     <div id="page-wrapper">
 
@@ -22,24 +22,24 @@
 
                         <?php
 
-                        if (isset($_POST['submit'])) {
-                            $cat_title = $_POST['cat_title'];
-                        }
+if (isset($_POST['submit'])) {
+    $cat_title = $_POST['cat_title'];
+}
 
-                        if ($cat_title == '' || empty($cat_title)) {
-                            echo "This field should not be empty";
-                        } else {
-                            $query = "INSERT INTO categories(cat_title)";
-                            $query .= "VALUE('{$cat_title}')";
+if ($cat_title == '' || empty($cat_title)) {
+    echo "This field should not be empty";
+} else {
+    $query = "INSERT INTO categories(cat_title)";
+    $query .= "VALUE('{$cat_title}')";
 
-                            $create_category_query = mysqli_query($connection, $query);
+    $create_category_query = mysqli_query($connection, $query);
 
-                            if (!$create_category_query) {
-                                die('Query Failed');
-                            }
-                        }
+    if (!$create_category_query) {
+        die('Query Failed');
+    }
+}
 
-                        ?>
+?>
 
 
                         <form action="" method="post">
@@ -53,16 +53,22 @@
                                 <input class="btn btn-primary" type="submit" name="submit" value="Add Category">
                             </div>
                         </form>
+<?php 
+  if(isset($_GET['edit'])){
+    $cat_id = $_GET['edit'];
+    include "includes/update_category.php";
+  }
+?>
                     </div>
                     <!-- / Add Category Form -->
                     <div class="col-xs-6">
 
                         <?php
 
-                        $query = "SELECT * FROM categories";
-                        $select_categories = mysqli_query($connection, $query);
+$query = "SELECT * FROM categories";
+$select_categories = mysqli_query($connection, $query);
 
-                        ?>
+?>
                         <table class="table table-bordered table-hover text-center" style="color:grey">
                             <thead>
                                 <tr style="text-align: center;">
@@ -73,26 +79,28 @@
                             <tbody>
                                 <?php
 
-                                while ($row = mysqli_fetch_assoc($select_categories)) {
-                                    $cat_id = $row['cat_id'];
-                                    $cat_title = $row['cat_title'];
-                                    echo "<tr>";
-                                    echo "<td><b>$cat_id</b></td>";
-                                    echo "<td><b>$cat_title</b></td>";
-                                    echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
-                                    echo "</tr>";
-                                }
-                                ?>
+while ($row = mysqli_fetch_assoc($select_categories)) {
+    $cat_id = $row['cat_id'];
+    $cat_title = $row['cat_title'];
+    echo "<tr>";
+    echo "<td><b>$cat_id</b></td>";
+    echo "<td><b>$cat_title</b></td>";
+    echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
+    echo "<td><a href='categories.php?edit={$cat_id}'>Edit</a></td>";
+    echo "</tr>";
+}
+?>
                                 <?php
+//DELETE CATEGORY
 
-                                if (isset($_GET['delete'])) {
-                                    $the_cat_id = $_GET['delete'];
+if (isset($_GET['delete'])) {
+    $the_cat_id = $_GET['delete'];
 
-                                    $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id}";
-                                    $delete_query = mysqli_query($connection, $query);
-                                    header("Location : /admin/categories.php");
-                                }
-                                ?>
+    $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id}";
+    $delete_query = mysqli_query($connection, $query);
+    header("Refresh:0; url=categories.php");
+}
+?>
                             </tbody>
                         </table>
                     </div>
@@ -108,4 +116,4 @@
 
 </div>
 
-<?php include "includes/admin_footer.php" ?>
+<?php include "includes/admin_footer.php"?>
