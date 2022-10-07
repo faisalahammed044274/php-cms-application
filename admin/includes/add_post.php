@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <h1>Add New Post</h1>
     <div class="col-xl-8 col-md-8 col-lg-8" style="background:#efefef ; padding:10px; width:800px;">
         <form>
             <div class="row mb-3">
